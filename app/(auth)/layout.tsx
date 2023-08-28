@@ -13,5 +13,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <div className="bg-red-400 h-full">{children}</div>
+  return <div className=" flex items-center justify-center h-full">{children}</div>
 }

@@ -1,12 +1,12 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Mada } from 'next/font/google'
-
-const font = Mada({ subsets: ['latin'] })
+import "./globals.css"
+import type { Metadata } from "next"
+import { Mada } from "next/font/google"
+import { ClerkProvider } from "@clerk/nextjs"
+const font = Mada({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: 'FamChat App',
-  description: 'A chat application for families',
+  title: "FamChat App",
+  description: "A chat application for families",
 }
 
 export default function RootLayout({
@@ -15,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={font.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={font.className}>{children}</body>
+      </html>
+    </ClerkProvider>
   )
 }

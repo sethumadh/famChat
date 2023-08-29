@@ -5,6 +5,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
+import "@uploadthing/react/styles.css"
 import {
   Dialog,
   DialogContent,
@@ -24,6 +25,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { formSchema } from "@/lib/zodSchema"
+import { UploadButton, UploadDropzone, Uploader } from "@/lib/uploadthing"
+import FileUpload from "../FileUpload"
 
 type FormSchema = z.infer<typeof formSchema>
 
@@ -64,18 +67,55 @@ const InitialModal = () => {
             <form onSubmit={forms.handleSubmit(onSubmit)} className="space-y-8">
               <div className="space-y-8 px-6">
                 <div className="flex items-center justify-center text-center">
-                  image upload
+                  <FormField
+                    control={forms.control}
+                    name="imageUrl"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <FileUpload
+                            endpoint='serverImage'
+                            onChange={field.onChange}
+                            value={field.value}
+                            />
+                          {/* <UploadDropzone
+                            endpoint="serverImage"
+                            {...field}
+                            onClientUploadComplete={(res) => {
+                              field.onChange(res?.[0].url)
+                              console.log("Files:", res)
+                            }}
+                            onUploadError={(error: Error) => {
+                              // Do something with the error.
+                              console.log(error)
+                              alert(`ERROR! ${error.message}`)
+                            }} */}
+                          {/* /> */}
+                          {/* <UploadDropzone
+                            endpoint={`serverImage`}
+                            onClientUploadComplete={(res) => {
+                              field.onChange(res?.[0].url)
+                            }}
+                            onUploadError={(error: Error) => {
+                              console.log(error)
+                            }}
+                          /> */}
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
                 <FormField
                   control={forms.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col">
+                    <FormItem className="">
                       <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
                         Server Name
                       </FormLabel>
                       <FormControl>
-                        <input
+                        <Input
                           disabled={isLoading}
                           className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0 px-4 py-2 rounded-lg"
                           placeholder="Enter server name"
@@ -90,7 +130,12 @@ const InitialModal = () => {
                 />
               </div>
               <DialogFooter className="bg-gray-100 px-6 py-4">
-                <Button variant="primary" disabled={isLoading}>
+                <Button
+                  variant="primary"
+                  disabled={isLoading}
+                  className="mx-auto px-12"
+                  type="submit"
+                >
                   Create
                 </Button>
               </DialogFooter>

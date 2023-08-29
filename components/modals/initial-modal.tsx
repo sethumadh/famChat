@@ -25,6 +25,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { formSchema } from "@/lib/zodSchema"
+import { useRouter } from "next/navigation"
+
 import { UploadButton, UploadDropzone, Uploader } from "@/lib/uploadthing"
 import FileUpload from "../FileUpload"
 
@@ -32,6 +34,7 @@ type FormSchema = z.infer<typeof formSchema>
 
 const InitialModal = () => {
   const [isMounted, setIsMounted] = useState(false)
+  const router = useRouter()
 
   const forms = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -42,7 +45,16 @@ const InitialModal = () => {
   })
   const { isSubmitting: isLoading } = forms.formState
   const onSubmit = async (values: FormSchema) => {
-    console.log(values)
+    try {
+      const response = await axios.post("/api/servers", values)
+      console.log(values)
+
+      forms.reset()
+      router.refresh()
+      window.location.reload()
+    } catch (err) {
+      console.log(err, ": submit RHF error")
+    }
   }
   useEffect(() => {
     setIsMounted(true)
@@ -74,10 +86,10 @@ const InitialModal = () => {
                       <FormItem>
                         <FormControl>
                           <FileUpload
-                            endpoint='serverImage'
+                            endpoint="serverImage"
                             onChange={field.onChange}
                             value={field.value}
-                            />
+                          />
                           {/* <UploadDropzone
                             endpoint="serverImage"
                             {...field}

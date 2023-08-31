@@ -46,7 +46,7 @@ const CreateServerModal = () => {
   const onSubmit = async (values: FormSchema) => {
     try {
       const response = await axios.post("/api/servers", values)
-      console.log(values)
+
 
       forms.reset()
       router.refresh()
@@ -86,7 +86,6 @@ const CreateServerModal = () => {
                             onChange={field.onChange}
                             value={field.value}
                           />
-                         
                         </FormControl>
                         <FormMessage />
                       </FormItem>

@@ -12,6 +12,6 @@ export const currentProfile = async () => {
       userId,
     },
   })
-  console.log(currentProfile, ": currentprofile")
+  // console.log(currentProfile, ": currentprofile")
   return currentProfile
 }

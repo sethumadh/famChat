@@ -1,6 +1,12 @@
 import React from "react"
 
-const ServerIdPage = () => {
+const ServerIdPage = async ({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: { serviceId: string }
+}) => {
   return <div>page</div>
 }
 

@@ -81,11 +81,11 @@ export async function PATCH(
     if (!params.memberId) {
       return new NextResponse("Member ID missing", { status: 400 });
     }
-
+console.log(profile)
     const server = await db.server.update({
       where: {
         id: serverId,
-        profileId: profile.id,
+        profileId: profile.id,// this ensure that Admin is doing this change. Checking whether the ADMIN's profile ID is matching with the profile ID of the server
       },
       data: {
         members: {
@@ -93,7 +93,7 @@ export async function PATCH(
             where: {
               id: params.memberId,
               profileId: {
-                not: profile.id
+                not: profile.id /// this ensure that Admin doesnt delete or chanhe his role to GUEST/MOD himself from server
               }
             },
             data: {

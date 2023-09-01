@@ -25,7 +25,7 @@ const InviteModal = () => {
   const [isLoading, setIsLoading] = useState(false)
   const origin = useOrigin()
   const inviteUrl = `${origin}/invite/${server?.inviteCode}`
-  const router = useRouter()
+
 
   const onCopy = () => {
     navigator.clipboard.writeText(inviteUrl)

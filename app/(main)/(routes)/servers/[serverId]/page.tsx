@@ -1,5 +1,6 @@
 import React from "react"
 
+
 const ServerIdPage = async ({
   children,
   params,
@@ -7,6 +8,7 @@ const ServerIdPage = async ({
   children: React.ReactNode
   params: { serviceId: string }
 }) => {
+
   return <div>page</div>
 }
 

@@ -5,6 +5,8 @@ import { db } from "@/lib/db"
 import { currentProfile } from "@/lib/current-profile"
 import { ServerSidebar } from "@/components/server/server-sidebar";
 
+
+
 const ServerIdLayout = async ({
   children,
   params, 
@@ -12,12 +14,15 @@ const ServerIdLayout = async ({
   children: React.ReactNode
   params: { serverId: string }
 }) => {
+
   const profile = await currentProfile()
 
   if (!profile) {
     return redirectToSignIn()
   }
 
+
+//  make this call inside a fetch and make revalidate =0 or no store:no cache or force dynamic
   const server = await db.server.findUnique({
     where: {
       id: params.serverId,

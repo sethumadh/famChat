@@ -25,7 +25,7 @@ type ServerHeaderProps = {
   server: ServerWithMembersWithProfiles
   role?: MemberRole
 }
-export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
+const ServerHeader = ({ server, role }: ServerHeaderProps) => {
   const { onOpen } = useModal()
   const isAdmin = role === MemberRole.ADMIN
   const isModerator = isAdmin || role === MemberRole.MODERATOR
@@ -112,3 +112,4 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
     </div>
   )
 }
+export default ServerHeader

@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { NavigationItem } from "@/components/navigation/navigation-item"
 import { ModeToggle } from "@/components/mode-toggle"
 import NavigationAction from "@/components/navigation/navigation-action"
-
+// export const dynamic = "force-dynamic"
 const NavigationSidebar = async () => {
   const profile = await currentProfile()
   if (!profile) redirect("/")
@@ -38,11 +38,14 @@ const NavigationSidebar = async () => {
       </ScrollArea>
       <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
         <ModeToggle />
-        <UserButton afterSignOutUrl="/" appearance={{
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
             elements: {
               avatarBox: "h-[48px] w-[48px]",
             },
-          }} />
+          }}
+        />
       </div>
     </div>
   )

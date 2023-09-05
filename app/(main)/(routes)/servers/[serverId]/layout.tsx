@@ -3,7 +3,7 @@ import { redirect } from "next/navigation"
 
 import { db } from "@/lib/db"
 import { currentProfile } from "@/lib/current-profile"
-import { ServerSidebar } from "@/components/server/server-sidebar";
+import  ServerSidebar  from "@/components/server/server-sidebar";
 
 
 

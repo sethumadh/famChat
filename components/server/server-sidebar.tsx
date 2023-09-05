@@ -12,9 +12,6 @@ import  ServerSearch  from "./server-search";
 import ServerSection from "./server-section";
 import ServerChannel from "./server-channel";
 import { ServerMember } from "./server-member";
-// import { ServerSection } from "./server-section";
-// import { ServerChannel } from "./server-channel";
-// import { ServerMember } from "./server-member";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -32,7 +29,7 @@ const roleIconMap = {
   [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 mr-2 text-rose-500" />
 }
 
-export const ServerSidebar = async ({
+const ServerSidebar = async ({
   serverId
 }: ServerSidebarProps) => {
   const profile = await currentProfile();
@@ -206,3 +203,4 @@ export const ServerSidebar = async ({
     </div>
   )
 }
+export default ServerSidebar

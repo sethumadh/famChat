@@ -12,10 +12,11 @@ import {
 } from "@/components/ui/popover";
 
 interface EmojiPickerProps {
+    value:string
   onChange: (value: string) => void;
 }
  const EmojiPicker = ({
-  onChange,
+  onChange,value
 }: EmojiPickerProps) => {
   const { resolvedTheme } = useTheme();
 
@@ -34,7 +35,8 @@ interface EmojiPickerProps {
         <Picker
           theme={resolvedTheme}
           data={data}
-          onEmojiSelect={(emoji: any) => onChange(emoji.native)}
+        //   onEmojiSelect={(emoji: any) => onChange(emoji.native)}
+          onEmojiSelect={(emoji: any) => onChange(`${value} ${emoji.native}`)}
         />
       </PopoverContent>
     </Popover>

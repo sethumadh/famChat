@@ -49,9 +49,9 @@ const ChannelIdPage = async ({
         serverId={channel.serverId}
         type="channel"
       />
-      {/* {channel.type === ChannelType.TEXT && ( */}
+      {channel.type === ChannelType.TEXT && (
         <>
-          {/* <ChatMessages
+          <ChatMessages
             member={member}
             name={channel.name}
             chatId={channel.id}
@@ -64,7 +64,7 @@ const ChannelIdPage = async ({
             }}
             paramKey="channelId"
             paramValue={channel.id}
-          /> */}
+          />
           <ChatInput
             name={channel.name}
             type="channel"
@@ -75,7 +75,7 @@ const ChannelIdPage = async ({
             }}
           />
         </>
-      {/* )} */}
+      )} 
       {/* {channel.type === ChannelType.AUDIO && (
         <MediaRoom
           chatId={channel.id}

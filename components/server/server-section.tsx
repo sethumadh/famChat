@@ -1,32 +1,32 @@
-"use client";
+"use client"
 
-import { ChannelType, MemberRole } from "@prisma/client";
-import { Plus, Settings } from "lucide-react";
+import { ChannelType, MemberRole } from "@prisma/client"
+import { Plus, Settings } from "lucide-react"
 
-import { ServerWithMembersWithProfiles } from "@/types";
-import { ActionTooltip } from "@/components/Tooltip";
-import { useModal } from "@/hooks/use-modal-store";
+import { ServerWithMembersWithProfiles } from "@/types"
+import { ActionTooltip } from "@/components/Tooltip"
+import { useModal } from "@/hooks/use-modal-store"
 
 interface ServerSectionProps {
-  label: string;
-  role?: MemberRole;
-  sectionType: "channels" | "members";
-  channelType?: ChannelType;
-  server?: ServerWithMembersWithProfiles;
-};
+  label: string
+  role?: MemberRole
+  sectionType: "channels" | "members"
+  channelType?: ChannelType
+  server?: ServerWithMembersWithProfiles
+}
 
- const ServerSection = ({
+const ServerSection = ({
   label,
   role,
   sectionType,
   channelType,
   server,
 }: ServerSectionProps) => {
-  const { onOpen } = useModal();
+  const { onOpen } = useModal()
 
   return (
     <div className="flex items-center justify-between py-2">
-      <p className="text-xs uppercase font-semibold text-zinc-500 dark:text-zinc-400">
+      <p className="text-xs uppercase font-semibold text-zinc-500 dark:text-zinc-400" aria-label="server-section">
         {label}
       </p>
       {role !== MemberRole.GUEST && sectionType === "channels" && (

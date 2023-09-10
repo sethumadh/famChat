@@ -44,6 +44,16 @@ export const ChatMessages = ({
   type,
 }: ChatMessagesProps) => {
   const queryKey = `chat:${chatId}`
+   /*
+   this query key is given to RQ and is invalidated using setQueryData when a new chat data is received.
+   Therefore the chat message is posted @DB but only the socket channel/ server is used to send the chat to the client.
+
+   The setQuerydata will invalidate the cache and set the cache with socket data,  and show the latest chat data to the user. Therefore, 
+   no API using useInfinteQuery is called. Only of the socket connection fails , refetch in useinfinite Query is called and refecth the entire 
+   chat data from the backend. 
+
+   */ 
+
   const addKey = `chat:${chatId}:messages`
   const updateKey = `chat:${chatId}:messages:update`
 

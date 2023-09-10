@@ -22,7 +22,6 @@ export const useChatQuery = ({
   const fetchMessages = async ({ pageParam = undefined }) => {
     // console.log(pageParam, ":pageParam")
 
-    // the pageP
     const url = qs.stringifyUrl(
       {
         url: apiUrl,
@@ -50,8 +49,9 @@ export const useChatQuery = ({
     useInfiniteQuery({
       queryKey: [queryKey],
       queryFn: fetchMessages,
-      getNextPageParam: (lastPage) => {
-        // console.log(lastPage, "lastpage")
+      getNextPageParam: (lastPage, page) => {
+        // console.log({"lastpage": lastPage})
+        // console.log({"page": page})
         return lastPage?.nextCursor
       },
       /*
@@ -68,7 +68,7 @@ export const useChatQuery = ({
       //  when socket connect fails , reqct query makes a refetch every
       // 1 second until socket/polling is connetced again
       refetchInterval: () => {
-        console.log("refetch")
+        // console.log("refetch")
         const val = isConnected ? false : 1000
         return val
       },

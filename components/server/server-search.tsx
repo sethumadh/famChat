@@ -15,7 +15,7 @@ import {
 
 type ServerSearchProps = {
   data: {
-    label: string 
+    label: string
     type: "channel" | "member"
     data:
       | {
@@ -33,6 +33,7 @@ const ServerSearch = ({ data }: ServerSearchProps) => {
   const params = useParams()
 
   useEffect(() => {
+
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
@@ -81,6 +82,7 @@ const ServerSearch = ({ data }: ServerSearchProps) => {
         <CommandList>
           <CommandEmpty>No Results found</CommandEmpty>
           {data.map(({ label, type, data }) => {
+
             if (!data?.length) return null
 
             return (

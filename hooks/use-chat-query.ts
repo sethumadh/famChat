@@ -17,8 +17,11 @@ export const useChatQuery = ({
   paramValue,
 }: ChatQueryProps) => {
   const { isConnected } = useSocket()
+  // console.log("ran")
 
   const fetchMessages = async ({ pageParam = undefined }) => {
+    // console.log(pageParam, ":pageParam")
+
     const url = qs.stringifyUrl(
       {
         url: apiUrl,
@@ -33,7 +36,6 @@ export const useChatQuery = ({
           
           
           */
-
         },
       },
       { skipNull: true }
@@ -47,9 +49,13 @@ export const useChatQuery = ({
     useInfiniteQuery({
       queryKey: [queryKey],
       queryFn: fetchMessages,
-      getNextPageParam: (lastPage) => lastPage?.nextCursor,
+      getNextPageParam: (lastPage, page) => {
+        // console.log({"lastpage": lastPage})
+        // console.log({"page": page})
+        return lastPage?.nextCursor
+      },
       /*
-      here the lastpage is undefined. There fore fetchNextPage function does not have a 
+      here the lastpage is undefined therefore getNextPageParam option return undefined, and react Query will look forward to the default value of the fecthmessages function . There fore fetchNextPage function does not have a 
       pageParam. Therefore typically , it would be the id of the first message. But there is no way
       of knowing the id of the 1st message. Therefore pageParam is passed as undefined. This is
        send as cursor  value . This is checked for a value in the messages route and if undefined 
@@ -57,8 +63,15 @@ export const useChatQuery = ({
        accessed by getNextPageParam which is the id of the last post of the of previous page,
        meaning the moment you click on load , the currentpage becomes the lastPage.
 
-      */ 
-      refetchInterval: isConnected ? false : 1000,
+    */
+
+      //  when socket connect fails , reqct query makes a refetch every
+      // 1 second until socket/polling is connetced again
+      refetchInterval: () => {
+        // console.log("refetch")
+        const val = isConnected ? false : 1000
+        return val
+      },
     })
 
   return {
@@ -69,8 +82,6 @@ export const useChatQuery = ({
     status,
   }
 }
-
-
 
 /*
 Initial Render:

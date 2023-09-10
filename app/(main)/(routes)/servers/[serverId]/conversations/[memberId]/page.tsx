@@ -45,6 +45,7 @@ const MemberIdPage = async ({
 
   const conversation = await getOrCreateConversation(currentMember.id, params.memberId);
 
+
   if (!conversation) {
     return redirect(`/servers/${params.serverId}`);
   }

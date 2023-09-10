@@ -32,6 +32,7 @@ import { Button } from "@/components/ui/button";
 
       onClose();
       router.refresh();
+      window.location.reload()
       router.push("/");
     } catch (error) {
       console.log(error);

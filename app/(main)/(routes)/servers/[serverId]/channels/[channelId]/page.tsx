@@ -74,7 +74,7 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
           />
         </>
       )}
-      {/* {channel.type === ChannelType.AUDIO && (
+      {channel.type === ChannelType.AUDIO && (
         <MediaRoom
           chatId={channel.id}
           video={false}
@@ -87,7 +87,7 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
           video={true}
           audio={true}
         />
-      )} */}
+      )}
     </div>
   )
 }
